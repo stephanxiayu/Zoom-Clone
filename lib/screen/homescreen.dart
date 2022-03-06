@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zoom_clone/Utilities/colors.dart';
+import 'package:zoom_clone/screen/history_meetingscreen.dart';
+import 'package:zoom_clone/screen/meeting_screen.dart';
 import 'package:zoom_clone/widget/home_meetingbutton.dart';
+import 'package:jitsi_meet/jitsi_meet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,19 +20,28 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+
+  List<Widget>pages=[
+    MeetingScreen(),
+   const HistoryMeetingScreen(),
+   const Text('Contacts'),
+   const Text('Settings'),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
-      elevation: 0,
-      title: const Text('Meet & Chat'),
-      backgroundColor: backgroundColor,
-    ),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text('Meet & Chat'),
+        backgroundColor: backgroundColor,
+      ),
       bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey.shade800,
           onTap: onPageChanged,
           currentIndex: _page,
-          type:BottomNavigationBarType.fixed ,
+          type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.comment_bank), label: 'Meet & Chat'),
@@ -39,32 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.person_outline), label: 'Contacts'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings_outlined), label: 'Settings'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.comment_bank), label: 'Meet& Chat'),
-          ]),
-          body: Column(children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-              HomeMeetingButton(onPressed: (){},
-              text: 'new Meeting',
-              icon: Icons.videocam,
-              ),
-               HomeMeetingButton(onPressed: (){},
-              text: 'Join Meeting',
-              icon: Icons.add_box_rounded,
-              ),
-               HomeMeetingButton(onPressed: (){},
-              text: 'Kalender',
-              icon: Icons.calendar_today,
-              
-              ),
-               HomeMeetingButton(onPressed: (){},
-              text: 'Share Screen',
-              icon: Icons.arrow_upward
-              ),
-            ],),
-            const Expanded(child: Center(child:Text('Am Meeting teilnehmen mit einen Klick') ,),),
-          ]),
+             ]),
+      body: pages[_page],
     );
   }
 }
+
