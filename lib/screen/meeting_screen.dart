@@ -14,6 +14,12 @@ createNewMeeting()async{
   String roomName=(random.nextInt(10000000)+10000000).toString();
 _jitsiMeetMethods.createMeeting(roomName: roomName, isAudioMuted: true, isVideoMuted: true);
 }
+
+joinMeeting(BuildContext context){
+  Navigator.pushNamed(context, '/video-call');
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -26,7 +32,7 @@ _jitsiMeetMethods.createMeeting(roomName: roomName, isAudioMuted: true, isVideoM
             icon: Icons.videocam,
           ),
           HomeMeetingButton(
-            onPressed: () {},
+            onPressed: () {joinMeeting(context);},
             text: 'Join Meeting',
             icon: Icons.add_box_rounded,
           ),

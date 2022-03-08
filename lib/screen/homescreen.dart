@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:zoom_clone/Utilities/colors.dart';
 import 'package:zoom_clone/screen/history_meetingscreen.dart';
 import 'package:zoom_clone/screen/meeting_screen.dart';
-import 'package:zoom_clone/widget/home_meetingbutton.dart';
-import 'package:jitsi_meet/jitsi_meet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
